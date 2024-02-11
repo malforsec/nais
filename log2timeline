@@ -1,0 +1,16 @@
+log2timeline
+
+### install log2timeline:
+https://plaso.readthedocs.io/en/latest/sources/user/Ubuntu-Packaged-Release.html
+
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:gift/stable
+sudo apt-get update
+sudo apt-get install plaso-tools
+
+
+### command for log2timeline on kape collection:
+log2timeline.py -z UTZ --storage-file ./hostname.plaso /home/karg/kape/Kape/clients/hostname/collections/F.CFEO0ONAGQPH6/uploads/
+
+### command for generating csv for ingest to timeline explorer or ADX
+psort.py --output_time_zone 'UTC' -o l2tcsv -w ./hostname.csv ./hostname.plaso "date > datetime('2024-02-10T00:00:00')" "date < datetime('2024-02-10T00:00:00)
