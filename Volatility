@@ -1,0 +1,22 @@
+Volatility
+
+vol.py -f “/path/to/file” imageinfo  | grep Suggested > imageinfo.txt
+vol.py -f “/path/to/file” --profile Win10x64_17134 pslist > pslist.txt
+
+volatility plugins
+
+windows.pslist
+windows.netstat
+windows.netscan
+windows.cmd
+windows.pstree
+windows.psscan
+windows.malfind
+
+vol3 -f $1 windows.pslist > pslist.txt
+vol3 -f $1 windows.psscan > psscan.txt
+vol3 -f $1 windows.pstree > pstree.txt
+vol3 -f $1 windows.malfind > malfind.txt
+vol3 -f $1 windows.cmd > cmd.txt
+vol3 -f $1 windows.netstat > netstat.txt
+vol3 -f $1 windows.netscan > netscan.txt
