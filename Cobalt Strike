@@ -32,6 +32,9 @@ mov eax   :   273        443 b'\xb8\xbb\x01\x00\x00'
 
 ## find xor key by looking at file (lots of 00 in CS beacon so pattern pretty easy to spot) or
 
+#Clone xcat from mstrand
+git clone https://github.com/mstrand/xcat/tree/master
+
 #find candidate xor keys
  xxd payload2.exe_ | awk '{$1=""; print $0}' | sort | uniq -c | sort -nr | head -10
 #use xcat to xor 
