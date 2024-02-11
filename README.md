@@ -10,4 +10,4 @@ nais and handy scripts and stuff
 - Gootloader      : ADX search + python fix for new registry
 - Systembc        : Systembc decrypt
 - Kusto           : ADX setup + tables + searches
-- 
+  
