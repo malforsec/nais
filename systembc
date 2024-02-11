@@ -1,0 +1,43 @@
+systembc 
+
+import sys, binascii
+from Crypto.Cipher import ARC4
+
+print(len(sys.argv))
+filename = sys.argv[1]
+#print(filename)
+#outputfile = sys.argv[3]
+f = open(filename, "r")
+line1 = f.readline()
+#assume key is in first line - first 50 bytes
+b = binascii.unhexlify(line1.rstrip())
+key = b[:50]
+print(line1)
+lines = f.readlines()
+for l in lines:
+    lb = binascii.unhexlify(l.rstrip())
+    #reset key
+    rc4 = ARC4.new(key)
+    #decrypt header 3 byte
+    dh = rc4.decrypt(lb[:3])
+    #reset key
+    rc4 = ARC4.new(key)
+    #decrypt body 3: byte
+    db = rc4.decrypt(lb[3:])
+    # decrypt + write to file
+    print(dh)
+    print(db)
+
+
+### To test
+#key: 
+000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f3031
+b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b\x0c\r\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&\'()*+,-./01'
+
+#crypt:
+5079d9e018f7d16621f69bae103221576f07580875e0338643b29cc597e507faaa90c8726b0ee608144b18e4b57fa564f13a
+#decrypt:
+b'cJ\x00\x00PS\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+
+#get crypted text from pcap with tshark
+tshark -x -r filename.pcap -T json 'tcp.srcport==54475 && tcp.flags.push == 1' | jq '.[] | ._source.layers.data_raw[0]' | cut  -d'"' -f 2 > systembc_hexstrings_client.txt
