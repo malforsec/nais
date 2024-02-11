@@ -2,7 +2,7 @@
 // create table with local ips
 .set-or-replace localips <|
 datatable(ip:string)
-["10.115.55.125","10.115.55.126", "10.115.55.147", "10.115.55.153", "10.115.55.145", "10.115.55.163", "10.115.55.131"];
+["","", "", ];
 
 //find all suricata alerts where local ip is dest_ip
 eve
