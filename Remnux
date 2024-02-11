@@ -2,6 +2,7 @@ Install done by converting to hyperv
 
 remnux startup
 
+setxkbmap no
 sudo ifconfig eth0 up
 sudo dhclient
 sudo systemctl start ssh.service
