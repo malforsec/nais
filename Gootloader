@@ -16,13 +16,12 @@ search '<stage2 key>'
 | where Value >= 0
 | sort by Value asc
 
-## Output is stager and beacon so look at CS decoding to finish the job
-
-
-
 
 
 ### Small fix to Mandiants gootloader decoder py due to changes in gottloader registry usage:
+
+just add 1 at commandline to decode as stage one:
+python3 GootloaderRegDecode.py stage1.obf 1
 
 #!/usr/bin/env python
 # filename          : GootloaderRegDecode.py
@@ -63,23 +62,56 @@ import csv
 import hashlib
 
 CsvFile = sys.argv[1]
-
+S1or2 = sys.argv[2]
+print(S1or2)
 f1 = open(CsvFile)
 csvData = csv.reader(f1)
 header = next(csvData)
 # Find the "Value Name" or "Reg Key Event Value Name" column in the CSV
-payload1Data = " "
+try:
+    # ESPIR Export
+    CsvValueNameIndex = header.index('Reg Key Event Value Name')
+except:
+    #Redline Export
+    CsvValueNameIndex = header.index('Value Name')
+
+# Find the "Reg Key Event Text" or "Text Data" column in the CSV
+try:
+    # ESPIR Export
+    CsvTextDataIndex = header.index('Reg Key Event Text')
+except:
+    #Redline Export
+    CsvTextDataIndex = header.index('Text Data')
+
+# Find the "Reg Key Event Path" or "Path" column in the CSV
+try:
+    # ESPIR Export
+    CsvRegPathIndex = header.index('Reg Key Event Path')
+except:
+    #Redline Export
+    CsvRegPathIndex = header.index('Path')
+
+# Sorting CSV rows by the value of the CsvValueNameIndex column
+#print(header)
+csvSorted = sorted(csvData, key=lambda row: int(row[CsvValueNameIndex]), reverse=False)
+payload1Data = ""
 payload2Data = ""
 
 #Split the reg path and check the penultimate item for the number '0' at the end of the path.
-for row in csvData:
-        print(row[0])
+for row in csvSorted:
+
+    #if row[CsvRegPathIndex].split('\\')[-2].endswith('0'):
+    if S1or2 == "1":
         #payload 1 has a 0 at the end of the username
-        payload1Data = payload1Data.join(row)
+        payload1Data = payload1Data + row[CsvTextDataIndex]
+    else:
+        #payload 2 doesn't have a 0 at the end of the username
+        payload2Data = payload2Data + row[CsvTextDataIndex]
 
 f1.close()
 
 OutputString = ''
+
 print(payload1Data)
 if payload1Data:
     # replace '#' in the input data with 1000, this based on the analysis of the Powershell code that decodes the registry entries
@@ -120,4 +152,3 @@ if OutputString:
 
 else:
     print('\nNo Payloads were decoded')
-
