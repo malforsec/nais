@@ -27,8 +27,8 @@ translate.py shellcode.bin -o shellcode.sc "byte ^ 0x23"
 file: shellcode.sc
 Found shellcode:
 Identification: CS reverse https x64 shellcode
-Parameter: 907 b'91.215.85.143'
-license-id: 921 206546002
+Parameter: 907 b'91.115.5.123'
+license-id: 
 mov eax   :   273        443 b'\xb8\xbb\x01\x00\x00'
 
 
