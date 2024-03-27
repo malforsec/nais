@@ -1,5 +1,5 @@
 # Read parent CSV
-$InputFilename = Get-Content '.\19530-emi-zeek-be6f052b-6738-48cd-b27d-c6fb60919fbb.json'
+$InputFilename = Get-Content '.\file_to_split.json'
 $OutputFilenamePattern = 'output_done_'
 $LineLimit = 200000
 # Initialize
@@ -9,7 +9,7 @@ $file = 0
 $start = 0
 # Loop all text lines
 while ($line -le $InputFilename.Length) {
-    # Generate child CSVs
+    # Generate child files
     if ($i -eq $LineLimit -Or $line -eq $InputFilename.Length) {
         $file++
         $Filename = "$OutputFilenamePattern$file.json"
