@@ -1,4 +1,4 @@
-# Read parent CSV
+# Read parent file
 $InputFilename = Get-Content '.\file_to_split.json'
 $OutputFilenamePattern = 'output_done_'
 $LineLimit = 200000
