@@ -27,7 +27,7 @@ translate.py shellcode.bin -o shellcode.sc "byte ^ 0x23"
 file: shellcode.sc
 Found shellcode:
 Identification: CS reverse https x64 shellcode
-Parameter: 907 b'91.115.5.123'
+Parameter: 907 b'95.115.50.123'
 license-id: 
 mov eax   :   273        443 b'\xb8\xbb\x01\x00\x00'
 
@@ -44,7 +44,7 @@ cd libcsce
 pip install .
 
 #find candidate xor keys
- xxd payload2.exe_ | awk '{$1=""; print $0}' | sort | uniq -c | sort -nr | head -10
+ xxd beacon.exe | awk '{$1=""; print $0}' | sort | uniq -c | sort -nr | head -10
 #use xcat to xor 
  python3 ../../xcat-master/xcat.py -xa6c62b02a6e5c44c payload2.exe_ > payload2.xored
  
