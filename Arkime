@@ -27,3 +27,14 @@ sudo /opt/arkime/bin/capture -r pcapfile.pcap
 
 browse to arkime:
 http://ip or host:8005
+
+
+###remove SPI data and pcap:
+
+https://arkime.com/faq
+Leave OpenSearch/Elasticsearch running.
+Shut down all running viewer or capture processes so that no new data is recorded.
+To delete all the SPI data stored in OpenSearch/Elasticsearch, use the db.pl script with either the init or wipe commands. The only difference between the two commands is that wipe leaves the added users so that they don't need to be re-added.
+/opt/arkime/db/db.pl http://ESHOST:9200 wipe
+Delete the PCAP files. The PCAP files are stored on the file system in raw format. You need to do this on all of the capture machines.
+/bin/rm -f /opt/arkime/raw/*
