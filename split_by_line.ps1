@@ -1,4 +1,5 @@
 # Read parent file
+## find num of lines in file: type BigDataFile.csv | find /v /c ""
 $InputFilename = Get-Content '.\file_to_split.json'
 $OutputFilenamePattern = 'output_done_'
 $LineLimit = 200000
