@@ -12,7 +12,8 @@ https://arkime.com/downloads
 install package: 
 sudo dpkg -i arkime_package_name
 
-## java is required so verify or install
+## java is required so verify or install (apt get install jre-default)
+## elastic did not start after install (start with systemctl)
 
 https://raw.githubusercontent.com/arkime/arkime/main/release/README.txt
 
