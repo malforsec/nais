@@ -1,0 +1,5 @@
+## linux split command to split files
+## 150K ser ok ut for Suri eve(alerts)
+### 300K ser ok ut for zeek
+
+split -l 150000 -d file_to_split.json file-prefix-a-
