@@ -12,6 +12,7 @@ https://arkime.com/downloads
 install package: 
 sudo dpkg -i arkime_package_name
 
+## java is required so verify or install
 
 https://raw.githubusercontent.com/arkime/arkime/main/release/README.txt
 
