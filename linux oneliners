@@ -3,3 +3,7 @@
 ### 300K ser ok ut for zeek
 
 split -l 150000 -d file_to_split.json file-prefix-a-
+
+
+#unzip and rm archive with password
+ for z in `ls *.zip`; do unzip -P 'infected' "$z"; rm "$z";done
