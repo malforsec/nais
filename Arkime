@@ -26,6 +26,7 @@ sudo systemctl status arkimecapture.service
 
 read pcaps into arkime:
 sudo /opt/arkime/bin/capture -r pcapfile.pcap
+for z in `ls *.pcap`; do sudo /opt/arkime/bin/capture -r "$z"; done
 
 browse to arkime:
 http://ip or host:8005
