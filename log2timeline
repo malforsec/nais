@@ -10,7 +10,7 @@ sudo apt-get install plaso-tools
 
 
 ### command for log2timeline on kape collection:
-log2timeline.py -z UTZ --storage-file ./hostname.plaso /home/karg/kape/Kape/clients/hostname/collections/F.CFEO0ONAGQPH6/uploads/
+log2timeline.py -z UTC --storage-file ./hostname.plaso /home/karg/kape/Kape/clients/hostname/collections/F.CFEO0ONAGQPH6/uploads/
 
 ### command for generating csv for ingest to timeline explorer or ADX
 csv:
