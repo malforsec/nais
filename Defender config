@@ -1,0 +1,3 @@
+\HKLM\software\Microsoft\Windows Advanced Threat Protection\
+
+https://gchq.github.io/CyberChef/#recipe=Find_/_Replace(%7B'option':'Simple%20string','string':'%5C%5C'%7D,'',true,false,true,false)Remove_whitespace(true,true,true,true,true,false)From_Hex('Auto')Raw_Inflate(0,0,'Adaptive',false,false)Remove_null_bytes()JSON_Beautify('%20%20%20%20',false,true)&ieol=CRLF
